@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-sanitize.min.js"></script>
+    <script src="index.js"></script>
+    <head>
+        <link rel="stylesheet" type="text/css" href="myStyle.css">
+    </head>
+    <body>
+        <div ng-app="first-try" ng-controller="controller">
+            Looping in a list
+            <ol>
+                <li ng-repeat="x in names">
+                    {{x}}
+                </li>
+            </ol>
+            <hr>
+            <p>Esto es lo que te digo: {{message1}} (Mensaje mostrado entre llaves.) </p>
+            <hr>
+            <input type="text" ng-model="message2" placeholder="Mensaje a motrar"></input>
+            <p>Esto es lo que te dice el input: <span ng-bind="message2"></span> </p>
+            <hr>
+            <alb-header></alb-header>
+            <hr>
+            <form name="myForm">
+                Enter your name: <input id="myName" name="myName" ng-model="myText" placeholder="Name required" required><br/>
+                Email: <input type="email" name="myAddress" ng-model="emailForm">
+                <span ng-show="myForm.myAddress.$error.email">Not a valid e-mail address</span><br/>
+                Pass: <input type="password" name="myPass" ng-model="passForm"><br/>
+                <b>Status</b>
+                Valid: {{myForm.myAddress.$valid}}
+                Dirty: {{myForm.myAddress.$dirty}}
+                Touched: {{myForm.myAddress.$touched}}
+                ErrorEmail: {{myForm.myAddress.$error}}
+                ErrorName: {{myForm.myName.$error}}<br/>
+                <ul><b>These are the available classes for forms:</b>
+                    <li ng-repeat="x in ngmodelclasses">
+                        {{x}}
+                    </li>
+                </ul>
+            </form>
+            <hr>
+            <p ng-click="changeName()">{{message3}}</p>
+            <p ng-click="resetCounter()">Reset counter</p>
+            <hr>
+            <table class="collapsedTable">
+                <tr>
+                    <td ng-click="orderTable('name')">Name</td>
+                    <td ng-click="orderTable('country')">Country</td>
+                </tr>
+                <tr ng-repeat="x in namesCountries | filter:search | orderBy: orderValue : orderReverse">
+                    <td>{{x.name}}</td>
+                    <td>{{x.country}}</td>
+                </tr>
+            </table>
+            Searching in: '{{orderValue}}' with keyword: <input ng-model="searchWord" ng-change="addFilter()"></input>
+            <hr>
+            <pre>Contenido descargado desde fuera de la app:</pre><br/>
+            <div ng-bind-html="loadedContent"></div>
+            <br/><pre>-----------------
+            Para poder visualizar este comando, es necesario realizar esta ejecucion desde un servidor https.
+            Para instalar un servidor http, npm install http-server -g, http-server [path]</pre>
+            <hr>
+            <table class="collapsedTable">
+                <tr>
+                    <td>Nº</td>
+                    <td>Name</td>
+                    <td>Country</td>
+                    <td>City</td>
+                </tr>
+                <tr ng-repeat="customer in customers">
+                    <td>{{$index + 1}}</td>
+                    <td>{{customer.Name}}</td>
+                    <td>{{customer.Country}}</td>
+                    <td>{{customer.City}}</td>
+                </tr>
+            </table>
+            <hr>
+            <select ng-model="selectedCar" ng-options="(y.brand +' '+ y.model) for (x,y) in cars"></select>
+            <p ng-show="selectedCar != null">Your dream's car is a {{selectedCar.brand}} model {{selectedCar.model}} in a special {{selectedCar.color}} color. </p>
+            <hr>
+        </div>
+    </body>
+</html>

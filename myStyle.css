@@ -1,0 +1,39 @@
+input.ng-invalid {
+    border: 2px solid red;
+}
+
+#myName::placeholder{
+    color: red;
+    font-weight: bold;
+}
+
+.collapsedTable {
+    border-collapse: collapse;
+    width: auto;
+    min-width: 25%;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+.collapsedTable tr{
+    border: none;
+    border-collapse: collapse;
+}
+.collapsedTable tr:nth-child(odd){
+    background-color: #DDD;
+}
+.collapsedTable tr:first-child{
+    background-color: rgb(61, 199, 123);
+}
+.collapsedTable tr:hover{
+    box-shadow: inset 0px 0px 3px 3px #DDD;
+}
+.collapsedTable tr:nth-child(odd):hover{
+    box-shadow: inset 0px 0px 3px 3px #BBB;
+}
+.collapsedTable tr:first-child:hover{
+    box-shadow: inset 0px 0px 3px 3px rgb(47, 153, 94);
+}
+.collapsedTable tr td{
+    padding: 5px 10px;
+}
